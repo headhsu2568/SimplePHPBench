@@ -26,8 +26,11 @@ class PHPBench {
     }
 
     public function start($desc="PHPBench starts") {
-        $this->startTime = array(microtime(true), $desc);
-        array_push($this->tickTimes, $this->startTime);
+        if(count($this->tickTimes) > 0) echo "[Error] PHPBench is alreay started\n";
+        else {
+            $this->startTime = array(microtime(true), $desc);
+            array_push($this->tickTimes, $this->startTime);
+        }
     }
 
     public function restart($desc="PHPBench restarts") {
@@ -37,13 +40,19 @@ class PHPBench {
     }
 
     public function tick($desc="", $baseline=false) {
-        array_push($this->tickTimes, array(microtime(true), $desc));
-        if($baseline === true) $this->baseline = count($tickTimes)-1;
+        if(count($this->tickTimes) < 1) echo "[Error] PHPBench is not started\n";
+        else {
+            array_push($this->tickTimes, array(microtime(true), $desc));
+            if($baseline === true) $this->baseline = count($tickTimes)-1;
+        }
     }
 
     public function end($desc="PHPBench ends") {
-        $this->endTime = array(microtime(true), $desc);
-        array_push($this->tickTimes, $this->endTime);
+        if(count($this->tickTimes) < 1) echo "[Error] PHPBench is not started\n";
+        else {
+            $this->endTime = array(microtime(true), $desc);
+            array_push($this->tickTimes, $this->endTime);
+        }
     }
 
     public function report($html=false, $showFormat=true) {
