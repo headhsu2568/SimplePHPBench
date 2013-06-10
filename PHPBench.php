@@ -47,6 +47,7 @@ class PHPBench {
     }
 
     public function report($html=false, $showFormat=true) {
+        if(!is_null($this->outfile)) ob_start();
         if($html === true) $br = "<br/>";
         else $br = "\n";
         $base = $this->tickTimes[$this->baseline][0];
@@ -59,6 +60,13 @@ class PHPBench {
             $offset = $tick[0] - $base;
             if($offset >= 0) $offset = "+".$offset;
             echo "[".($i+1)."] ".$tick[0]."(".$offset.") - ".$tick[1].$br;
+        }
+        if(!is_null($this->outfile)) {
+            $w = ob_get_contents();
+            $fp = fopen($this->outfile, "a");
+            fwrite($fp, $w);
+            fclose($fp);
+            ob_end_clean();
         }
     }
 }
