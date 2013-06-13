@@ -1,4 +1,4 @@
-SimplePHPBench v0.1
+SimplePHPBench v0.2
 ===================
 
 A simple PHP execution time benchmark
