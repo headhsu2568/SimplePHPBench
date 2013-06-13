@@ -1,5 +1,6 @@
 <?
 class PHPBench {
+    public $quiet=false;
     public $baseline;
     public $startTime;
     public $endTime;
@@ -14,6 +15,10 @@ class PHPBench {
         $this->baseline = 0;
     }
 
+    public function setQuiet() {
+        $this->quiet = true;
+    }
+
     public function setOutfile($outfile=null) {
         if(!is_null($outfile) && !empty($outfile)) {
             $this->outfile = $outfile;
@@ -26,7 +31,7 @@ class PHPBench {
     }
 
     public function start($desc="PHPBench starts") {
-        if(count($this->tickTimes) > 0) echo "[Error] PHPBench is alreay started\n";
+        if($this->quiet === true && (count($this->tickTimes) > 0)) echo "[Error] PHPBench is alreay started\n";
         else {
             $this->startTime = array(microtime(true), $desc);
             array_push($this->tickTimes, $this->startTime);
@@ -40,7 +45,7 @@ class PHPBench {
     }
 
     public function tick($desc="", $baseline=false) {
-        if(count($this->tickTimes) < 1) echo "[Error] PHPBench is not started\n";
+        if($this->quiet === true && (count($this->tickTimes) < 1)) echo "[Error] PHPBench is not started yet\n";
         else {
             array_push($this->tickTimes, array(microtime(true), $desc));
             if($baseline === true) $this->baseline = count($tickTimes)-1;
@@ -48,7 +53,7 @@ class PHPBench {
     }
 
     public function end($desc="PHPBench ends") {
-        if(count($this->tickTimes) < 1) echo "[Error] PHPBench is not started\n";
+        if($this->quiet === true && && (count($this->tickTimes) < 1)) echo "[Error] PHPBench is not started yet\n";
         else {
             $this->endTime = array(microtime(true), $desc);
             array_push($this->tickTimes, $this->endTime);
