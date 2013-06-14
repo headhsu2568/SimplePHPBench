@@ -1,4 +1,4 @@
-SimplePHPBench v0.2
+SimplePHPBench v0.3
 ===================
 
 A simple PHP execution time benchmark
@@ -17,11 +17,11 @@ Quick Start
 The output example:
 
     ---------------------------------------------------
-    [No.] Micro Seconds (Elapsed Time) - Description
+    >[Sequence no.] Micro Seconds (Elapsed Time) - Description
     ---------------------------------------------------
-    [1] 1370857426.059(0) - PHPBench starts
-    [2] 1370857427.0591(+1.0001420974731) - the first tick
-    [3] 1370857428.0593(+2.0003011226654) - PHPBench ends
+    >[1] 1370857426.0590(0) - PHPBench starts
+    >[2] 1370857427.0591(+1.0001420974731) - the first tick
+    >[3] 1370857428.0593(+2.0003011226654) - PHPBench ends
 
 <br />
 - - -
