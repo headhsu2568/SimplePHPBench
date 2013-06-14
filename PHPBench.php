@@ -40,7 +40,7 @@ class PHPBench {
          ***/
         list($u, $s) = explode(" ", microtime(false));
         if(function_exists("bcadd")) $t = bcadd($u, $s, 7);
-        else $this->bcadd($u, $s, 7);
+        else $t = $this->bcadd($u, $s, 7);
         return $t;
     }
 
