@@ -57,23 +57,18 @@ class PHPBench {
         /*** right alignment (padding zero) for right numbers ***/
         if($lrlen > $rrlen) $rr = str_pad($rr, $lrlen, "0", STR_PAD_RIGHT);
         else if($rrlen > $lrlen) $lr = str_pad($lr, $rrlen, "0", STR_PAD_RIGHT);
- 
-        /*** caculate the amount of zero of right prefix ***/
-        $lrzlen = strlen($lr) - strlen(intval($lr));
-        $rrzlen = strlen($rr) - strlen(intval($rr));
-        $zerolen = ($lrzlen < $rrzlen) ? $lrzlen : $rrzlen;
+        $origrlen = strlen($lr);
  
         $left = $ll + $rl;
         $right = $lr + $rr;
  
         /*** check whether the result of right numbers is carried ***/
-        if((strlen($right) > strlen(intval($lr))) && (strlen($right) > strlen(intval($rr)))) {
-            if($zerolen > 0) --$zerolen;
-            else {
-                $left = $left + substr($right, 0, 1);
-                $right = substr($right, 1);
-            }
+        if(strlen($right) > $origrlen) {
+            $len = strlen($right)-$origrlen;
+            $left = $left + substr($right, 0, $len);
+            $right = intval(substr($right, $len));
         }
+        $zerolen = $origrlen - strlen($right);
  
         /*** preserve the scale number digit of the result of right numbers ***/
         if(strlen($right) > ($scale - $zerolen)) $right = round($right, $scale-$zerolen-strlen($right));
