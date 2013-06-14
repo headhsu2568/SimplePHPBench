@@ -10,18 +10,20 @@ Quick Start
     $PB = new PHPBench("result.log"); // output to screen
     $PB->start();
     $PB->tick("the first tick"); // record this tick
+    $PB->tick("the second tick"); // record this tick
     $PB->end();
     $PB->report();
     
     
 The output example:
 
-    ---------------------------------------------------
+    -----------------------------------------------------------
     >[Sequence no.] Micro Seconds (Elapsed Time) - Description
-    ---------------------------------------------------
-    >[1] 1370857426.0590(0) - PHPBench starts
-    >[2] 1370857427.0591(+1.0001420974731) - the first tick
-    >[3] 1370857428.0593(+2.0003011226654) - PHPBench ends
+    -----------------------------------------------------------
+    >[1] 1371202815.2883010(+0.0000000) - PHPBench starts
+    >[4] 1371202815.2884330(+0.0001320) - the first tick
+    >[5] 1371202815.2884570(+0.0001560) - the second tick
+    >[6] 1371202815.2884870(+0.0001860) - PHPBench ends
 
 <br />
 - - -

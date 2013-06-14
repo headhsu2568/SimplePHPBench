@@ -89,9 +89,9 @@ class PHPBench {
         else $br = "\n";
         $base = $this->tickTimes[$this->baseline][1];
         if($showFormat === true) {
-            echo "---------------------------------------------------".$br;
+            echo "-----------------------------------------------------------".$br;
             echo ">[Sequence no.] Micro Seconds (Elapsed Time) - Description".$br;
-            echo "---------------------------------------------------".$br;
+            echo "-----------------------------------------------------------".$br;
         }
         foreach($this->tickTimes as $i => $tick) {
             $offset = bcsub($tick[1], $base, 7);
