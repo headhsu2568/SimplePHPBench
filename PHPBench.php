@@ -32,13 +32,24 @@ class PHPBench {
         else $this->baseline = $this->current-1;
     }
 
+    public function getTime() {
+
+        /*** 
+         * refer to http://se2.php.net/manual/en/function.microtime.php#101875
+         * thanks https://github.com/victorjonsson/PHP-Benchmark/blob/master/lib/PHPBenchmark/Monitor.php
+         ***/
+        list($u, $s) = explode(" ", microtime(false));
+        $t = bcadd($u, $s, 7);
+        return $t;
+    }
+
     public function start($desc="PHPBench starts") {
         if($this->current != 0) {
             if($this->quiet === false) echo "[Error] PHPBench is alreay started\n";
         }
         else {
             ++$this->current;
-            $this->startTime = array(">[".$this->current."]" ,microtime(true), $desc);
+            $this->startTime = array(">[".$this->current."]", $this->getTime(), $desc);
             array_push($this->tickTimes, $this->startTime);
         }
     }
@@ -56,7 +67,7 @@ class PHPBench {
         }
         else {
             ++$this->current;
-            array_push($this->tickTimes, array(">[".$this->current."]", microtime(true), $desc));
+            array_push($this->tickTimes, array(">[".$this->current."]", $this->getTime(), $desc));
             if($baseline === true) $this->baseline = $this->current-1;
         }
     }
@@ -67,7 +78,7 @@ class PHPBench {
         }
         else {
             ++$this->current;
-            $this->endTime = array(">[".$this->current."]", microtime(true), $desc);
+            $this->endTime = array(">[".$this->current."]", $this->getTime(), $desc);
             array_push($this->tickTimes, $this->endTime);
         }
     }
@@ -83,7 +94,7 @@ class PHPBench {
             echo "---------------------------------------------------".$br;
         }
         foreach($this->tickTimes as $i => $tick) {
-            $offset = $tick[1] - $base;
+            $offset = bcsub($tick[1], $base, 7);
             if($offset >= 0) $offset = "+".$offset;
             echo $tick[0]." ".$tick[1]."(".$offset.") - ".$tick[2].$br;
         }
