@@ -44,6 +44,12 @@ class PHPBench {
         return $t;
     }
 
+    public function getMem() {
+        $mem = memory_get_usage();
+        $peak = memory_get_peak_usage();
+        return array($mem, $peak);
+    }
+
     public function bcadd($left_operand, $right_operand, $scale) {
         @list($ll, $lr) = @explode(".", $left_operand);
         if(is_null($ll)) $ll = "0";
@@ -142,7 +148,7 @@ class PHPBench {
         }
         else {
             ++$this->current;
-            $this->startTime = array(">[".$this->current."]", $this->getTime(), $desc);
+            $this->startTime = array(">[".$this->current."]", $this->getTime(), $this->getMem(), $desc);
             array_push($this->tickTimes, $this->startTime);
         }
     }
@@ -160,7 +166,7 @@ class PHPBench {
         }
         else {
             ++$this->current;
-            array_push($this->tickTimes, array(">[".$this->current."]", $this->getTime(), $desc));
+            array_push($this->tickTimes, array(">[".$this->current."]", $this->getTime(), $this->getMem(), $desc));
             if($baseline === true) $this->baseline = $this->current-1;
         }
     }
@@ -171,7 +177,7 @@ class PHPBench {
         }
         else {
             ++$this->current;
-            $this->endTime = array(">[".$this->current."]", $this->getTime(), $desc);
+            $this->endTime = array(">[".$this->current."]", $this->getTime(), $this->getMem(), $desc);
             array_push($this->tickTimes, $this->endTime);
         }
     }
@@ -182,15 +188,15 @@ class PHPBench {
         else $br = "\n";
         $base = $this->tickTimes[$this->baseline][1];
         if($showFormat === true) {
-            echo "-----------------------------------------------------------".$br;
-            echo ">[Sequence no.] Micro Seconds (Elapsed Time) - Description".$br;
-            echo "-----------------------------------------------------------".$br;
+            echo "-------------------------------------------------------------------------------".$br;
+            echo ">[Seq no.] Timestamp (Elapsed Time) - Memory Usage (Memory Peak) - Description".$br;
+            echo "-------------------------------------------------------------------------------".$br;
         }
         foreach($this->tickTimes as $i => $tick) {
             if(function_exists("bcsub")) $offset = bcsub($tick[1], $base, 7);
             else $offset = $this->bcsub($tick[1], $base, 7);
             if($offset >= 0) $offset = "+".$offset;
-            echo $tick[0]." ".$tick[1]."(".$offset.") - ".$tick[2].$br;
+            echo $tick[0]." ".$tick[1]." (".$offset." secs) - ".$tick[2][0]." bytes (".$tick[2][1]." bytes) - ".$tick[3].$br;
         }
         if(!is_null($this->outfile)) {
             $w = ob_get_contents();
