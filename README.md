@@ -1,4 +1,4 @@
-SimplePHPBench v0.3
+SimplePHPBench v0.4
 ===================
 
 A simple PHP execution time benchmark
@@ -17,13 +17,14 @@ Quick Start
     
 The output example:
 
-    -----------------------------------------------------------
-    >[Sequence no.] Micro Seconds (Elapsed Time) - Description
-    -----------------------------------------------------------
-    >[1] 1371202815.2883010(+0.0000000) - PHPBench starts
-    >[4] 1371202815.2884330(+0.0001320) - the first tick
-    >[5] 1371202815.2884570(+0.0001560) - the second tick
-    >[6] 1371202815.2884870(+0.0001860) - PHPBench ends
+    -------------------------------------------------------------------------------
+    >[Seq no.] Timestamp (Elapsed Time) - Memory Usage (Memory Peak) - Description
+    -------------------------------------------------------------------------------
+    >[1] 1371274724.0709700 (+0.0000000 secs) - 288112 bytes (302960 bytes) - PHPBench starts
+    >[2] 1371274724.0712380 (+0.0002680 secs) - 299840 bytes (304360 bytes) - the first tick
+    >[3] 1371274724.0713130 (+0.0003430 secs) - 303984 bytes (308504 bytes) - the second tick
+    >[4] 1371274724.0715560 (+0.0005860 secs) - 317832 bytes (322496 bytes) - PHPBench ends
+
 
 <br />
 - - -
