@@ -1,4 +1,4 @@
-SimplePHPBench v0.4
+SimplePHPBench v0.5
 ===================
 
 A simple PHP execution time benchmark
@@ -25,6 +25,12 @@ The output example:
     >[3] 1371274724.0713130 (+0.0003430 secs) - 303984 bytes (308504 bytes) - the second tick
     >[4] 1371274724.0715560 (+0.0005860 secs) - 317832 bytes (322496 bytes) - PHPBench ends
 
+    =========================================
+    > Elapsed Time: 0.0005860 secs
+    > Declared Classes: 4
+    > Included Files: 3
+    > Peak Used Memory: 322496 bytes
+    =========================================
 
 <br />
 - - -
