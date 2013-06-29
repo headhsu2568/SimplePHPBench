@@ -208,7 +208,7 @@ class PHPBench {
         echo "> Peak Used Memory: ".$tick[2][1]." bytes".$br;
         echo "=========================================".$br;
         echo $br;
-        $this->reportExtend();
+        $this->reportExtend($br);
         if(!is_null($this->outfile)) {
             $w = ob_get_contents();
             $fp = fopen($this->outfile, "a");
@@ -218,6 +218,6 @@ class PHPBench {
         }
     }
 
-    public function reportExtend() {}
+    public function reportExtend($br) {}
 }
 ?>
