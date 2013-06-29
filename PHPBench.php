@@ -198,6 +198,17 @@ class PHPBench {
             if($offset >= 0) $offset = "+".$offset;
             echo $tick[0]." ".$tick[1]." (".$offset." secs) - ".$tick[2][0]." bytes (".$tick[2][1]." bytes) - ".$tick[3].$br;
         }
+        if(function_exists("bcsub")) $elapsedTime = bcsub($tick[1], $this->tickTimes[0][1], 7);
+        else $elapsedTime = $this->bcsub($tick[1], $this->tickTimes[0][1], 7);
+        echo $br;
+        echo "=========================================".$br;
+        echo "> Elapsed Time: ".$elapsedTime." secs".$br;
+        echo "> Declared Classes: ".count(get_declared_classes()).$br;
+        echo "> Included Files: ".count(get_included_files()).$br;
+        echo "> Peak Used Memory: ".$tick[2][1]." bytes".$br;
+        echo "=========================================".$br;
+        echo $br;
+        $this->reportExtend();
         if(!is_null($this->outfile)) {
             $w = ob_get_contents();
             $fp = fopen($this->outfile, "a");
@@ -206,5 +217,7 @@ class PHPBench {
             ob_end_clean();
         }
     }
+
+    public function reportExtend() {}
 }
 ?>
