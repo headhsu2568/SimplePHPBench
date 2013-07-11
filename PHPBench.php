@@ -144,7 +144,7 @@ class PHPBench {
 
     public function start($desc="PHPBench starts") {
         if($this->current != 0) {
-            if($this->quiet === false) echo "[Error] PHPBench is alreay started\n";
+            if($this->quiet === false) echo "[Error] PHPBench is already started\n";
         }
         else {
             ++$this->current;
