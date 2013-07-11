@@ -1,7 +1,7 @@
 SimplePHPBench v0.5
 ===================
 
-A simple PHP execution time benchmark
+A simple benchmark tool for PHP
 
 Quick Start
 -----------
