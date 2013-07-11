@@ -1,13 +1,13 @@
 SimplePHPBench v0.5
 ===================
 
-A simple PHP execution time benchmark
+A simple benchmark tool for PHP
 
 Quick Start
 -----------
     
     $PB = new PHPBench(); // output to screen
-    $PB = new PHPBench("result.log"); // output to screen
+    $PB = new PHPBench("benchmark.log"); // output to file
     $PB->start();
     $PB->tick("the first tick"); // record this tick
     $PB->tick("the second tick"); // record this tick
