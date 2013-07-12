@@ -188,9 +188,9 @@ class PHPBench {
         else $br = "\n";
         $base = $this->tickTimes[$this->baseline][1];
         if($showFormat === true) {
-            echo "-------------------------------------------------------------------------------".$br;
-            echo ">[Seq no.] Timestamp (Elapsed Time) - Memory Usage (Memory Peak) - Description".$br;
-            echo "-------------------------------------------------------------------------------".$br;
+            echo "-------------------------------------------------------------------------------------".$br;
+            echo ">[Seq no.] Timestamp (Elapsed Time) - Memory Usage (Peak Memory Usage) - Description".$br;
+            echo "-------------------------------------------------------------------------------------".$br;
         }
         foreach($this->tickTimes as $i => $tick) {
             if(function_exists("bcsub")) $offset = bcsub($tick[1], $base, 7);
@@ -205,7 +205,7 @@ class PHPBench {
         echo "> Elapsed Time: ".$elapsedTime." secs".$br;
         echo "> Declared Classes: ".count(get_declared_classes()).$br;
         echo "> Included Files: ".count(get_included_files()).$br;
-        echo "> Peak Used Memory: ".$tick[2][1]." bytes".$br;
+        echo "> Peak Memory Usage: ".$tick[2][1]." bytes".$br;
         echo "=========================================".$br;
         echo $br;
         $this->reportExtend($br);

@@ -8,6 +8,7 @@ A simple benchmark tool for PHP
 Quick Start
 -----------
     
+    require_once('PHPBench.php');
     $PB = new PHPBench(); // output to screen
     $PB = new PHPBench("benchmark.log"); // output to file
     $PB->start();
@@ -19,9 +20,9 @@ Quick Start
     
 The output example:
 
-    -------------------------------------------------------------------------------
-    >[Seq no.] Timestamp (Elapsed Time) - Memory Usage (Memory Peak) - Description
-    -------------------------------------------------------------------------------
+    -------------------------------------------------------------------------------------
+    >[Seq no.] Timestamp (Elapsed Time) - Memory Usage (Peak Memory Usage) - Description
+    -------------------------------------------------------------------------------------
     >[1] 1371274724.0709700 (+0.0000000 secs) - 288112 bytes (302960 bytes) - PHPBench starts
     >[2] 1371274724.0712380 (+0.0002680 secs) - 299840 bytes (304360 bytes) - the first tick
     >[3] 1371274724.0713130 (+0.0003430 secs) - 303984 bytes (308504 bytes) - the second tick
@@ -31,7 +32,7 @@ The output example:
     > Elapsed Time: 0.0005860 secs
     > Declared Classes: 4
     > Included Files: 3
-    > Peak Used Memory: 322496 bytes
+    > Peak Memory Usage: 322496 bytes
     =========================================
 
 <br />
