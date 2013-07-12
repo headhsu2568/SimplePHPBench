@@ -1,5 +1,7 @@
-SimplePHPBench v0.5
-===================
+SimplePHPBench
+==============
+
+#### v0.5
 
 A simple benchmark tool for PHP
 
